@@ -1,4 +1,4 @@
-import { DUMMY_NEWS, IDummyNewsItem } from "../../dummy-news"
+import { DUMMY_NEWS, IDummyNewsItem } from "../../../dummy-news"
 
 import { notFound } from "next/navigation";
 
