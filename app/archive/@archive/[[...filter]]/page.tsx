@@ -18,10 +18,11 @@ export default function FilteredNewsPage({ params }) {
 
   let news: IDummyNewsItem[]
   let links = getAvailableNewsYears()
-x
+
+  if (selectedYear && !selectedMonth) {
+    news = getNewsForYear(selectedYear)
     links = getAvailableNewsMonths(selectedYear)
   }
-
   if (selectedYear && selectedMonth) {
     news = getNewsForYearAndMonth(selectedYear, selectedMonth)
     links = []
@@ -33,7 +34,12 @@ x
     newsContetn = <NewsList news={news} />
   }
 
-  // const news = getNewsForYear(newsYear);
+  if (
+    (selectedYear && !getAvailableNewsYears().includes(+selectedYear)) ||
+    (selectedMonth && !getAvailableNewsMonths(selectedYear).includes(+selectedMonth))
+  ) {
+    throw new Error('Invalid filter')
+  }
 
   return (
     <>
